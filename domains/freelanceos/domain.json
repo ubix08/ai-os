@@ -1,0 +1,32 @@
+{
+  "name": "freelanceos",
+  "label": "FreelanceOS",
+  "collections": [
+    { "name": "clients", "label": "Clients", "icon": "users", "searchFields": ["name", "company", "email"] },
+    { "name": "leads", "label": "Leads", "icon": "target", "searchFields": ["name", "company"] },
+    { "name": "projects", "label": "Projects", "icon": "briefcase", "searchFields": ["name"] },
+    { "name": "tasks", "label": "Tasks", "icon": "check-square", "searchFields": ["title"] },
+    { "name": "invoices", "label": "Invoices", "icon": "file-text", "searchFields": ["invoice_number", "client_id"] },
+    { "name": "proposals", "label": "Proposals", "icon": "file", "searchFields": ["title"] },
+    { "name": "notes", "label": "Notes", "icon": "file-text" },
+    { "name": "contacts", "label": "Contacts", "icon": "book", "searchFields": ["name", "email"] },
+    { "name": "articles", "label": "Articles", "icon": "file-text", "searchFields": ["title", "description", "tags"] },
+    { "name": "content_research", "label": "Research Reports", "icon": "book", "searchFields": ["title", "topic"] }
+  ],
+  "dashboard": {
+    "widgets": [
+      { "type": "count", "collection": "clients", "label": "Total Clients" },
+      { "type": "count", "collection": "leads", "label": "Active Leads" },
+      { "type": "count", "collection": "tasks", "label": "Tasks", "config": { "filter": { "status": "pending" } } },
+      { "type": "count", "collection": "articles", "label": "Published Articles" },
+      { "type": "group", "collection": "tasks", "label": "Tasks by Status", "config": { "field": "status" } },
+      { "type": "group", "collection": "leads", "label": "Leads by Status", "config": { "field": "status" } },
+      { "type": "aggregate", "collection": "invoices", "label": "Revenue", "config": { "field": "total", "fn": "sum", "filter": { "status": "paid" } } },
+      { "type": "aggregate", "collection": "invoices", "label": "Outstanding", "config": { "field": "total", "fn": "sum", "filter": { "status": "sent" } } },
+      { "type": "recent", "collection": "invoices", "label": "Recent Invoices", "config": { "limit": 5 } },
+      { "type": "recent", "collection": "articles", "label": "Recent Articles", "config": { "limit": 5 } }
+    ]
+  },
+  "agents": ["copywriter-orchestrator", "competitive-analyst", "tech-researcher", "tech-writer", "reviewer", "business-assistant", "data-analyst"],
+  "commands": ["article", "optimize", "rewrite", "audit", "brief", "check", "cluster", "research", "images", "chat", "analyze"]
+}

@@ -1,0 +1,90 @@
+[
+  {
+    "name": "article",
+    "description": "Write a complete technical article with competitive research, drafting, fact-check, review, and delivery. Full 14-step pipeline.",
+    "agent_id": "copywriter-orchestrator",
+    "input_template": "Write a comprehensive technical article about {{topic}}. Target audience: {{audience|intermediate}}. Target keyword: {{keyword}}. Competitor URLs to analyze: {{competitors|none}}. Additional instructions: {{instructions|none}}",
+    "context_refs": ["core/quality-standards.md", "writing/technical-voice.md", "writing/blog-patterns.md", "writing/seo-and-geo.md", "writing/eeat-signals.md", "writing/competitive-analysis.md", "core/session.md"],
+    "mode": "pipeline"
+  },
+  {
+    "name": "optimize",
+    "description": "Optimize an existing article with competitive analysis and quality improvements. 12-step pipeline.",
+    "agent_id": "copywriter-orchestrator",
+    "input_template": "Optimize the existing article at path {{path}}. Target keyword: {{keyword}}. New competitors to analyze: {{competitors|none}}. Focus areas: {{focus|all}}.",
+    "context_refs": ["core/quality-standards.md", "writing/technical-voice.md", "writing/seo-and-geo.md", "writing/eeat-signals.md", "writing/competitive-analysis.md", "core/session.md"],
+    "mode": "pipeline"
+  },
+  {
+    "name": "rewrite",
+    "description": "Rebuild a rough draft or AI-generated content from scratch following quality standards. 11-step pipeline.",
+    "agent_id": "copywriter-orchestrator",
+    "input_template": "Rewrite the content at path {{path}}. Source quality: {{source_quality|rough}}. Target improvements: {{target_improvements|all}}.",
+    "context_refs": ["core/quality-standards.md", "writing/technical-voice.md", "writing/blog-patterns.md", "writing/seo-and-geo.md", "writing/eeat-signals.md", "writing/competitive-analysis.md", "core/session.md"],
+    "mode": "pipeline"
+  },
+  {
+    "name": "audit",
+    "description": "Audit an article against the 100-point quality scoring framework. Read-only, no file changes.",
+    "agent_id": "copywriter-orchestrator",
+    "input_template": "Audit the article at path {{path}} against the quality standards framework. Deliver a scored report with issues, strengths, critical fixes, and verdict.",
+    "context_refs": ["core/quality-standards.md", "writing/seo-and-geo.md", "writing/eeat-signals.md"],
+    "mode": "pipeline"
+  },
+  {
+    "name": "brief",
+    "description": "Create a content brief with competitive research and killer blueprint. 3-step pipeline.",
+    "agent_id": "copywriter-orchestrator",
+    "input_template": "Create a content brief for topic {{topic}}. Target keyword: {{keyword}}. Target audience: {{audience|intermediate}}. Competitors to analyze: {{competitors|top_5}}.",
+    "context_refs": ["core/quality-standards.md", "writing/blog-patterns.md", "writing/seo-and-geo.md", "writing/competitive-analysis.md"],
+    "mode": "pipeline"
+  },
+  {
+    "name": "check",
+    "description": "Quick validation of article structure and required elements. 16-point checklist.",
+    "agent_id": "copywriter-orchestrator",
+    "input_template": "Run a quick validation check on the article at path {{path}}. Check all 16 elements: frontmatter, H1, heading hierarchy, Key Takeaways, FAQ, sourced stats, code blocks, paragraph length, internal links, external links, E-E-A-T signals, meta description, author validation, word count, JSON-LD schema, images. Deliver a pass/fail table.",
+    "context_refs": ["core/quality-standards.md", "writing/blog-patterns.md", "writing/seo-and-geo.md"],
+    "mode": "pipeline"
+  },
+  {
+    "name": "cluster",
+    "description": "Plan a content cluster with pillar page and supporting articles. 4-step pipeline.",
+    "agent_id": "copywriter-orchestrator",
+    "input_template": "Plan a content cluster for topic {{topic}}. Pillar page keyword: {{pillar_keyword}}. Number of supporting articles: {{count|5}}. Target audience: {{audience|intermediate}}.",
+    "context_refs": ["core/quality-standards.md", "writing/blog-patterns.md", "writing/seo-and-geo.md", "writing/competitive-analysis.md"],
+    "mode": "pipeline"
+  },
+  {
+    "name": "research",
+    "description": "Analyze competitors and build a killer article blueprint. Research-only, 6-step pipeline.",
+    "agent_id": "competitive-analyst",
+    "input_template": "Research topic {{topic}} for a new article. Target keyword: {{keyword}}. Analyze top 5-8 competitors. Score them on the 6-dimension framework. Identify gaps. Produce a killer blueprint with must-haves, differentiation opportunities, target structure, and sourcing plan. Save the research report.",
+    "context_refs": ["core/quality-standards.md", "writing/competitive-analysis.md", "writing/seo-and-geo.md"],
+    "mode": "pipeline"
+  },
+  {
+    "name": "images",
+    "description": "Fetch and embed images into an article. Replaces image placeholders with real images.",
+    "agent_id": "copywriter-orchestrator",
+    "input_template": "Fetch images for the article at path {{path}}. For each `<!-- image: ... -->` placeholder, generate or fetch the appropriate image. For photos use search. For diagrams generate them inline. Replace placeholders with markdown image tags. Save the updated article.",
+    "context_refs": ["core/quality-standards.md", "writing/blog-patterns.md"],
+    "mode": "pipeline"
+  },
+  {
+    "name": "chat",
+    "description": "Chat with the Business Assistant AI for business operations help.",
+    "agent_id": "business-assistant",
+    "input_template": "$ARGUMENTS",
+    "context_refs": [],
+    "mode": "autonomous"
+  },
+  {
+    "name": "analyze",
+    "description": "Analyze business data and generate insights from store collections.",
+    "agent_id": "data-analyst",
+    "input_template": "$ARGUMENTS",
+    "context_refs": [],
+    "mode": "autonomous"
+  }
+]

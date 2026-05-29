@@ -1,0 +1,59 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+@theme {
+  --font-sans: 'Geist', system-ui, sans-serif;
+  --font-mono: 'Geist Mono', monospace;
+
+  --color-bg-base: #0C0D0F;
+  --color-bg-surface: #141518;
+  --color-bg-elevated: #1A1C21;
+  --color-bg-overlay: #21232A;
+
+  --color-border-subtle: #1E2029;
+  --color-border-muted: #2A2D38;
+  --color-border-default: #363A4A;
+
+  --color-text-primary: #F0F1F5;
+  --color-text-secondary: #9CA3AF;
+  --color-text-muted: #6B7280;
+  --color-text-disabled: #374151;
+
+  --color-brand: #5865F2;
+  --color-brand-muted: #3B4280;
+  --color-brand-hover: #4752C4;
+
+  --color-success: #10B981;
+  --color-warning: #F59E0B;
+  --color-error: #EF4444;
+  --color-info: #3B82F6;
+}
+
+body {
+  @apply bg-bg-base text-text-primary antialiased min-h-screen font-sans;
+}
+
+.card {
+  @apply rounded-lg border border-border-subtle bg-bg-surface text-text-primary shadow-sm;
+}
+
+.btn-primary {
+  @apply inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors px-4 py-2 bg-brand text-white hover:bg-brand-hover border border-transparent shadow-sm disabled:opacity-50 disabled:pointer-events-none;
+}
+
+.btn-secondary {
+  @apply inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors px-4 py-2 bg-bg-elevated text-text-primary hover:bg-bg-overlay border border-border-default disabled:opacity-50 disabled:pointer-events-none;
+}
+
+.input {
+  @apply flex h-10 w-full rounded-md border border-border-muted bg-bg-base px-3 py-2 text-sm placeholder:text-text-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:border-transparent disabled:cursor-not-allowed disabled:opacity-50;
+}
+
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-in {
+  animation: fade-in 0.3s ease-out;
+}
